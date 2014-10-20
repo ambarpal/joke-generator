@@ -1,0 +1,11 @@
+1. Postgresql is a complete noob, it does not know anything.. anything.
+2. First of all set all permissions(md5/peer) in /etc/postgresql/9.1/main/pg_hba.conf to trust
+3. Then take full rights by sudo chmod 777 /etc/postgresql/9.1/main/pg_hba.conf
+4. Go to superuser mode with postgres as alias: sudo su - postgres
+5. Run: psql
+6. Now issue the command: create role "joke-generator" superuser with login;
+7. Again, psql is noob, YOU NEED TO PUT THE SEMICOLON AT THE END FOR THE THING TO GET EXECUTED.
+8. Check with \du; to ensure that the user is added happily.
+9. Now run rake db:create to create all the required databases.
+10. ENJOY AND DROP ME A THANKYOU MAIL. I SPENT 2 HRS TRYING TO DECIPHER THIS. I FEEL DIZZY.
+
