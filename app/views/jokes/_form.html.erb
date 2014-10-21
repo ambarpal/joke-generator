@@ -1,30 +1,48 @@
-<%= form_for(@joke, html: { role: "form" }) do |f| %>
+<%= form_for @joke, :html => { :class => "form-horizontal joke" } do |f| %>
+
   <% if @joke.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-      <%= pluralize(@joke.errors.count, "error") %> prohibited this joke from being saved:
-      </h2>
-      <ul>
-      <% @joke.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@joke.errors.count, "error") %> prohibited this joke from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @joke.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
 
   <div class="form-group">
-    <%= f.label :description %><br>
-    <%= f.text_area :description, class: "form-control", rows:3%>
+    <%= f.label :description, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_area :description, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:description) %>
   </div>
   <div class="form-group">
-    <%= f.label :tags %><br>
-    <%= f.text_area :tags, class: "form-control"%>
+    <%= f.label :tags, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :tags, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:tags) %>
   </div>
   <div class="form-group">
-    <%= f.label :usage %><br>
-    <%= f.text_field :usage, class: "form-control" %>
+    <%= f.label :usage, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :usage, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:usage) %>
   </div>
-  <div class="actions">
-    <%= f.submit "Add This", class: "btn btn-primary btn-lg btn-block" %>
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                jokes_path, :class => 'btn btn-default' %>
+    </div>
   </div>
+
 <% end %>

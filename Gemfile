@@ -52,5 +52,3 @@ gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) support
 
 # To remove content-length warning, use thin
 gem 'thin'
-
-#this is changed int he branch add-theme

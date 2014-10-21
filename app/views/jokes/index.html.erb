@@ -1,32 +1,40 @@
-<h1>Listing jokes</h1>
-<div class="table-responsive">
-<table class="table table-hover table-striped">
-    <thead>
+<%- model_class = Joke -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:description) %></th>
+      <th><%= model_class.human_attribute_name(:tags) %></th>
+      <th><%= model_class.human_attribute_name(:usage) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @jokes.each do |joke| %>
       <tr>
-        <th>Description</th>
-        <th>Tags</th>
-        <th>Usage</th>
-        <th></th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @jokes.each do |joke| %>
-      <tr>
+        <td><%= link_to joke.id, joke_path(joke) %></td>
         <td><%= joke.description %></td>
         <td><%= joke.tags %></td>
         <td><%= joke.usage %></td>
-        <td><%= link_to 'Show', joke %></td>
-        <td><%= link_to 'Edit', edit_joke_path(joke) %></td>
-        <td><%= link_to 'Destroy', joke, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%=l joke.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_joke_path(joke), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      joke_path(joke),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
       </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+    <% end %>
+  </tbody>
+</table>
 
-<br>
-
-<%= link_to 'New Joke', new_joke_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_joke_path,
+            :class => 'btn btn-primary' %>
