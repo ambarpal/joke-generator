@@ -1,0 +1,32 @@
+<h1>Listing jokes</h1>
+<div class="table-responsive">
+<table class="table table-hover table-striped">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Tags</th>
+        <th>Usage</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @jokes.each do |joke| %>
+      <tr>
+        <td><%= joke.description %></td>
+        <td><%= joke.tags %></td>
+        <td><%= joke.usage %></td>
+        <td><%= link_to 'Show', joke %></td>
+        <td><%= link_to 'Edit', edit_joke_path(joke) %></td>
+        <td><%= link_to 'Destroy', joke, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<br>
+
+<%= link_to 'New Joke', new_joke_path %>
