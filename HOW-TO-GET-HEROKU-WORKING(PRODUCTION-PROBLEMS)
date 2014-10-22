@@ -1,0 +1,10 @@
+1. Set these settings in config/environments/production.rb
+config.assets.compile = true
+config.assets.precompile =  ['*.js', '*.css', '*.css.erb'] 
+
+2. To test always use rails s thin -e production
+
+3. Now run RAILS_ENV=production rake db:create db:schema:load
+
+4. Then precompile assets: RAILS_ENV=production bundle exec rake assets:precompile
+
