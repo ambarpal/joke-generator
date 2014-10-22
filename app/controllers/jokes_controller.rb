@@ -1,4 +1,5 @@
 class JokesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_joke, only: [:show, :edit, :update, :destroy]
 
   # GET /jokes

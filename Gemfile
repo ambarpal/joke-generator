@@ -55,3 +55,6 @@ gem 'thin'
 
 # Bring on the AI!
 gem 'ai4r'
+
+# Devise Authentication
+gem 'devise'
