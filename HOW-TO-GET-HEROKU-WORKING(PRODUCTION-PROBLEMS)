@@ -8,3 +8,8 @@ config.assets.precompile =  ['*.js', '*.css', '*.css.erb']
 
 4. Then precompile assets: RAILS_ENV=production bundle exec rake assets:precompile
 
+5. Now go on to removing garbage from heroku and resetting the database	ON HEROKU:
+heroku pg:reset DATABASE
+heroku run rake db:migrate
+heroku restart
+heroku open
